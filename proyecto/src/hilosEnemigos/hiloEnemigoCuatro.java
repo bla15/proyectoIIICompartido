@@ -109,7 +109,7 @@ public class hiloEnemigoCuatro {
 				
 				//Aqui lo que se hace es que cada 0.3 segundos, se calcula un nuevo giro para el enemigo
 				//Exsten 2 posibilidades o seguira por donde va desde el principio o cambia directamente
-				if ((System.currentTimeMillis()-tiempoAccion >=250) && (System.currentTimeMillis()-tiempoAccion <=300)){
+				if ((System.currentTimeMillis()-tiempoAccion >=2500) && (System.currentTimeMillis()-tiempoAccion <=3000)){
 					for (int i = 0;i < misEnemigos.size();i++){
 						misEnemigos.get(i).randomDestino();
 						

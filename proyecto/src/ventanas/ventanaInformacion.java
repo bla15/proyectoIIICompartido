@@ -66,7 +66,7 @@ public class ventanaInformacion  {
 	public ventanaInformacion() {
 		
 		cartel = new logicaFotoAlerta();
-		cartel.setLocation(100, 20);
+		cartel.setLocation(200, 100);
 
 		initialize();
 		panel.addKeyListener(new KeyAdapter() {
@@ -134,7 +134,7 @@ public class ventanaInformacion  {
 		
 		JTextPane textoImportante = new JTextPane();
 		textoImportante.setFont(new Font("Tempus Sans ITC", Font.BOLD | Font.ITALIC, 15));
-		textoImportante.setEditable(true);
+		textoImportante.setEditable(false);
 		scrollPane.setViewportView(textoImportante);
 		textoImportante.setText("Los desarroladores advierten que para obtener puntuacion y as\u00ED poder puntuar, es necesario que se selecione el mundo de destino numero cuatro. Si es tu primera vez es recomendable jugar a los mundos anteriores para coger experiencia. Suerte reclutA");
 	}
