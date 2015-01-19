@@ -204,7 +204,7 @@ public class ventanaJuego implements ActionListener, KeyListener {
 		puntuacionVisible.setBounds(251, 2, 90, 48);
 		fondoControles.add(puntuacionVisible);
 		puntuacionVisible.setText("0");
-		puntuacionVisible.setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 40));
+		puntuacionVisible.setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 20));
 
 	}
 

@@ -36,30 +36,30 @@ public static gameOver window;
 	private JLabel enunciadoPuntuaciones;
 	private JLabel puntuaciones;
 	
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					window = new gameOver();
-					window.frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
+//	public static void main(String[] args) {
+//		EventQueue.invokeLater(new Runnable() {
+//			public void run() {
+//				try {
+//					window = new gameOver();
+//					window.frame.setVisible(true);
+//				} catch (Exception e) {
+//					e.printStackTrace();
+//				}
+//			}
+//		});
+//	}
 
 	/**
 	 * Create the application.
 	 */
-	public gameOver() {
-		initialize();
+	public gameOver(int puntuacion) {
+		initialize(puntuacion);
 	}
 
 	/**
 	 * Initialize the contents of the frame.
 	 */
-	private void initialize() {
+	private void initialize(int puntuacion) {
 		frame = new JDialog(ventanaJuego.frame);
 		frame.setBounds(100, 100, 450, 300);
 		//frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -109,7 +109,7 @@ public static gameOver window;
 		puntuaciones.setFont(new Font("Stencil", Font.BOLD | Font.ITALIC, 20));
 		puntuaciones.setHorizontalAlignment(SwingConstants.RIGHT);
 		puntuaciones.setBounds(142, 11, 96, 52);
-		puntuaciones.setText("0");
+		puntuaciones.setText(""+puntuacion);
 		panelPuntuaciones.add(puntuaciones);
 		
 		

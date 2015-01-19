@@ -23,7 +23,9 @@ public class hiloEnemigoCuatro {
 	long tiempoAccion;
 	public  logicaEnemigosConjunta unEnemigo;
 	ArrayList<logicaEnemigosConjunta> misEnemigos = new ArrayList<logicaEnemigosConjunta>();
-
+	int numeroEnemigosMatados;
+	Puntuacion puntuacionActual = new Puntuacion();
+	
 	//los corazones
 	corazonNivel3y4 corazon;
 
@@ -133,6 +135,9 @@ public class hiloEnemigoCuatro {
 						ventanaJuego.paneljuego.remove(misEnemigos.get(i).getFotoEnemigo());
 						misEnemigos.remove(i);
 						vida-=1;
+						//Ya que la puntuacion depende de las vidas tambien, recalculamos la puntuacion 
+						//cada vez que se pierda una vida
+						puntuacionActual.calcularPuntuacion(numeroEnemigosMatados, vida, 4);
 						
 						corazon.setVidas(vida);
 						corazon.eliminarVidas();
@@ -141,8 +146,8 @@ public class hiloEnemigoCuatro {
 							EventQueue.invokeLater(new Runnable() {
 								public void run() {
 									try {
-										
-										ventanas.gameOver.window = new ventanas.gameOver();
+										int puntuacionFinal = puntuacionActual.puntuacionFinal(numeroEnemigosMatados, vida, 4);
+										ventanas.gameOver.window = new ventanas.gameOver(puntuacionFinal);
 										ventanas.gameOver.window.frame.setVisible(true);
 									
 									} catch (Exception e) {
@@ -181,7 +186,9 @@ public class hiloEnemigoCuatro {
 						if(areaEnemigo.intersects(areaLaser.getBounds2D())){
 							ventanaJuego.paneljuego.remove(misEnemigos.get(i).getFotoEnemigo());
 							misEnemigos.remove(i);
-
+							//Calculamos la puntuacion cada vez que muera un enemigo
+							numeroEnemigosMatados++;
+							puntuacionActual.calcularPuntuacion(numeroEnemigosMatados, vida, 4);
 						}
 						
 						

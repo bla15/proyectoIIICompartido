@@ -22,6 +22,11 @@ public class hiloEnemigoDos {
 	int limiteIzquierdo=ventanaJuego.anchoPanelJuego-50;
 	public  logicaEnemigosConjunta unEnemigo;
 	ArrayList<logicaEnemigosConjunta> misEnemigos = new ArrayList<logicaEnemigosConjunta>();
+	int numeroEnemigosMatados;
+	int numeroMaximosEnemigos;
+	int numeroEnemigosAparecidos;
+	Puntuacion puntuacionActual = new Puntuacion();
+	
 	//los corazones
 		corazonNivel1y2 corazon;
 
@@ -62,10 +67,10 @@ public class hiloEnemigoDos {
 				 * variable que indica el numero maximo de enmigos que tenemos que crear en este nivel
 				 * se va haciendo cada vez mas pequeña hasta llegar a cero
 				 */
-				int numeroMaximosEnemigos=40;
+				numeroMaximosEnemigos=40;
 
 				//si aun no hemos alcanzado el maximo de enmigos entra
-				while((numeroMaximosEnemigos>0)&&(vida>0)){
+				while((numeroMaximosEnemigos>0)&&(vida>0)&&(numeroEnemigosMatados+numeroEnemigosAparecidos+(8-vida)<80)){
 
 					//System.out.println(misEnemigos.size());
 
@@ -85,7 +90,7 @@ public class hiloEnemigoDos {
 					ventanaJuego.paneljuego.repaint();
 					//reducimos en un enemigo
 					numeroMaximosEnemigos-=1;
-
+					numeroEnemigosAparecidos++;
 					try {
 						//cada cuanto tiempo los va creando
 						Thread.sleep(2000);
@@ -108,7 +113,7 @@ public class hiloEnemigoDos {
 	public class hiloMovimiento extends Thread{
 		int i;
 		public void run(){
-			while(vida>0){
+			while(vida>0 && numeroEnemigosMatados+numeroEnemigosAparecidos+(8-vida)<80){
 				//les damos movimiento
 				for(i=0;i<misEnemigos.size();i++){
 					//misEnemigos.get(i).gira(10);
@@ -125,15 +130,18 @@ public class hiloEnemigoDos {
 						ventanaJuego.paneljuego.remove(misEnemigos.get(i).getFotoEnemigo());
 						misEnemigos.remove(i);
 						vida-=1;
+						//Ya que la puntuacion depende de las vidas tambien, recalculamos la puntuacion 
+						//cada vez que se pierda una vida
+						puntuacionActual.calcularPuntuacion(numeroEnemigosMatados, vida, 2);
 						
-						if(vida<=0){
+						if(vida<=0 || numeroEnemigosMatados+numeroEnemigosAparecidos+(8-vida)>=80){
 							corazon.setVidas(vida);
 							corazon.pares();
 							EventQueue.invokeLater(new Runnable() {
 								public void run() {
 									try {
-										
-										ventanas.gameOver.window = new ventanas.gameOver();
+										int puntuacionFinal = puntuacionActual.puntuacionFinal(numeroEnemigosMatados, vida, 2);
+										ventanas.gameOver.window = new ventanas.gameOver(puntuacionFinal);
 										ventanas.gameOver.window.frame.setVisible(true);
 									
 									} catch (Exception e) {
@@ -200,7 +208,24 @@ public class hiloEnemigoDos {
 						if(areaEnemigo.intersects(areaLaser.getBounds2D())){
 							ventanaJuego.paneljuego.remove(misEnemigos.get(i).getFotoEnemigo());
 							misEnemigos.remove(i);
-
+							//Calculamos la puntuacion cada vez que muera un enemigo
+							numeroEnemigosMatados++;
+							puntuacionActual.calcularPuntuacion(numeroEnemigosMatados, vida, 2);
+							if (numeroEnemigosMatados+numeroEnemigosAparecidos+(8-vida)>=80){
+								EventQueue.invokeLater(new Runnable() {
+									public void run() {
+										try {
+											int puntuacionFinal = puntuacionActual.puntuacionFinal(numeroEnemigosMatados, vida, 1);
+											ventanas.gameOver.window = new ventanas.gameOver(puntuacionFinal);
+											ventanas.gameOver.window.frame.setVisible(true);
+										
+										} catch (Exception e) {
+											e.printStackTrace();
+										}
+									}
+								});
+								ventanaJuego.funcionar=false;
+							}
 						}
 						
 						
