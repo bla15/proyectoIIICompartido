@@ -3,10 +3,13 @@ package ventanas;
 import hilosEnemigos.eleccionHilo;
 
 import java.awt.EventQueue;
+import java.awt.Font;
 
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.SwingConstants;
 
 import logica.logicaCojuntaMiNave;
 import logica.logicaFotoMiNave;
@@ -31,7 +34,7 @@ import java.util.ArrayList;
 
 public class ventanaJuego implements ActionListener, KeyListener {
 
-	protected JFrame frame;
+	protected static JFrame frame;
 	//panel en el que se juega
 	public static logicaFondos paneljuego;
 	public static int anchoPanelJuego=1362;
@@ -64,6 +67,9 @@ public class ventanaJuego implements ActionListener, KeyListener {
 	//arrayList de los lasers que voy disparando
 	public static ArrayList<laserConjunto> misLasers = new ArrayList<laserConjunto>();
 	
+	//puntuacion
+	public static JLabel puntuacionVisible;
+
 	/**
 	 * Launch the application.
 	 */
@@ -185,6 +191,20 @@ public class ventanaJuego implements ActionListener, KeyListener {
 		panelCorazones.setOpaque( false );
 		fondoControles.add(panelCorazones);
 		
+		JPanel panelPuntuacion = new JPanel();
+		panelPuntuacion.setBorder(new LineBorder(Color.red));
+		panelPuntuacion.setOpaque( false );
+		panelPuntuacion.setBounds(235, 2, 106, 60);
+		fondoControles.add(panelPuntuacion);
+		panelPuntuacion.setLayout(null);
+		
+		puntuacionVisible = new JLabel();
+		puntuacionVisible.setForeground(Color.red);
+		puntuacionVisible.setHorizontalAlignment(SwingConstants.CENTER);
+		puntuacionVisible.setBounds(251, 2, 90, 48);
+		fondoControles.add(puntuacionVisible);
+		puntuacionVisible.setText("0");
+		puntuacionVisible.setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 40));
 
 	}
 

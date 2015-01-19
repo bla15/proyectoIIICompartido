@@ -47,12 +47,14 @@ public class ventanaEleccion implements KeyListener, ActionListener {
 	private JRadioButton rdbtnDestino3;
 	public JRadioButton rdbtnDestino4;
 	
+	private ButtonGroup grupoBotones;
+	
 	public  int fondoventanaJuego;
 	public int tipoEnemigo;
 	
-	private ButtonGroup grupoBotones;
-	
 	static ventanaEleccion window;
+	
+	public static logicaFondoJuego elFondo;
 
 	/**
 	 * Launch the application.
@@ -238,7 +240,7 @@ public class ventanaEleccion implements KeyListener, ActionListener {
 				}
 				
 		
-				logicaFondoJuego elFondo = new logicaFondoJuego(fondoventanaJuego);
+				elFondo = new logicaFondoJuego(fondoventanaJuego);
 				this.window.frame.dispose();
 				EventQueue.invokeLater(new Runnable() {
 					public void run() {
@@ -246,7 +248,7 @@ public class ventanaEleccion implements KeyListener, ActionListener {
 							
 							//metemos el nombre del piloto en contenedor
 							ventanaStart.contenedor= new logicaPiloto(0, txtPonTuNombre.getText());
-							
+						
 							ventanaJuego.window = new ventanaJuego(elFondo.getRutaFondo(), elFondo.getJoptionPanel(), tipoEnemigo);
 							ventanaJuego.window.frame.setVisible(true);
 						

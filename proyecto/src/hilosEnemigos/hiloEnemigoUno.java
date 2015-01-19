@@ -1,18 +1,20 @@
 package hilosEnemigos;
 
+import java.awt.EventQueue;
 import java.awt.geom.Area;
 import java.awt.geom.Rectangle2D;
 import java.util.ArrayList;
-
 import javax.swing.JOptionPane;
-
 import fondos.logicaFondos;
 import logica.logicaFotoMiNave;
+import logica.logicaPiloto;
 import logicaEnemigos.eleccionfotoEnemigo;
 import logicaEnemigos.logicaEnemigosConjunta;
 import logicaLaser.logicaFotoLaser;
 import logicaLaser.logicaLaser;
+import ventanas.ventanaInformacion;
 import ventanas.ventanaJuego;
+import ventanas.ventanaStart;
 import ventanas.ventanaJuego.hiloLaser;
 
 
@@ -128,7 +130,18 @@ public class hiloEnemigoUno {
 						if(vida<=0){
 							corazon.setVidas(vida);
 							corazon.pares();
-							JOptionPane.showMessageDialog(null, "Te has quedado sin vida", "Error", JOptionPane.ERROR_MESSAGE);
+							EventQueue.invokeLater(new Runnable() {
+								public void run() {
+									try {
+										
+										ventanas.gameOver.window = new ventanas.gameOver();
+										ventanas.gameOver.window.frame.setVisible(true);
+									
+									} catch (Exception e) {
+										e.printStackTrace();
+									}
+								}
+							});
 							ventanaJuego.funcionar=false;
 
 						}

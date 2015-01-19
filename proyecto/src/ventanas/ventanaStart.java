@@ -232,13 +232,12 @@ public class ventanaStart  implements KeyListener, ActionListener{
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
 		if (e.getSource()==botonStart) {
-			this.window.frame.dispose();
 			EventQueue.invokeLater(new Runnable() {
 				public void run() {
 					try {
 						
-						ventanaEleccion.window = new ventanaEleccion();
-						ventanaEleccion.window.frame.setVisible(true);
+						ventanaInformacion.window = new ventanaInformacion();
+						ventanaInformacion.window.frame.setVisible(true);
 					
 					} catch (Exception e) {
 						e.printStackTrace();

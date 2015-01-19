@@ -1,5 +1,6 @@
 package hilosEnemigos;
 
+import java.awt.EventQueue;
 import java.awt.geom.Area;
 import java.awt.geom.Rectangle2D;
 import java.util.ArrayList;
@@ -145,7 +146,18 @@ public class hiloEnemigoCuatro {
 						corazon.eliminarVidas();
 						
 						if(vida==0){
-							JOptionPane.showMessageDialog(null, "Te has quedado sin vida", "Error", JOptionPane.ERROR_MESSAGE);
+							EventQueue.invokeLater(new Runnable() {
+								public void run() {
+									try {
+										
+										ventanas.gameOver.window = new ventanas.gameOver();
+										ventanas.gameOver.window.frame.setVisible(true);
+									
+									} catch (Exception e) {
+										e.printStackTrace();
+									}
+								}
+							});
 							ventanaJuego.funcionar=false;
 						}
 					}
