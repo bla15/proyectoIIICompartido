@@ -60,14 +60,8 @@ public class hiloEnemigoCuatro {
 
 		public void run() {
 			
-				/*
-				 * variable que indica el numero maximo de enmigos que tenemos que crear en este nivel
-				 * se va haiendo cada vez mas pequeña hasta llegar aceor
-				 */
-				int numeroMaximosEnemigos=10;
-
-				//si aun no hemos alcanzado el maximo de enmigos entra
-				while((numeroMaximosEnemigos>0)&&(vida>0)){
+				//si aun no se han perdido todas las vidas, entra
+				while(vida>0){
 					unEnemigo= new logicaEnemigosConjunta(tipoEnemigo);
 					//posicon aleatoria en el eje de las x (sin que toque los bordes para que se vea bien la imagen
 					unEnemigo.setPosX((int)(Math.random()*((limiteIzquierdo)-limiteDerecho+1)+limiteDerecho));
@@ -81,8 +75,6 @@ public class hiloEnemigoCuatro {
 					//lo sacmos en el panel de juego
 					ventanaJuego.paneljuego.add(unEnemigo.getFotoEnemigo());
 					ventanaJuego.paneljuego.repaint();
-					//reducimos en un enemigo
-					numeroMaximosEnemigos-=1;
 
 					try {
 						//cada cuanto tiempo los va creando
@@ -110,7 +102,7 @@ public class hiloEnemigoCuatro {
 				
 				//Aqui lo que se hace es que cada 0.3 segundos, se calcula un nuevo giro para el enemigo
 				//Exsten 2 posibilidades o seguira por donde va desde el principio o cambia directamente
-				if ((System.currentTimeMillis()-tiempoAccion >=2500) && (System.currentTimeMillis()-tiempoAccion <=3000)){
+				if ((System.currentTimeMillis()-tiempoAccion >=1000) && (System.currentTimeMillis()-tiempoAccion <=1500)){
 					for (int i = 0;i < misEnemigos.size();i++){
 						misEnemigos.get(i).randomDestino();
 						

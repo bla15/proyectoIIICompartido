@@ -65,7 +65,7 @@ public class hiloEnemigoTres {
 				 * variable que indica el numero maximo de enmigos que tenemos que crear en este nivel
 				 * se va haiendo cada vez mas pequeña hasta llegar aceor
 				 */
-				int numeroMaximosEnemigos=10;
+				int numeroMaximosEnemigos=40;
 
 				//si aun no hemos alcanzado el maximo de enmigos entra
 				while((numeroMaximosEnemigos>0)&&(vida>0)){
