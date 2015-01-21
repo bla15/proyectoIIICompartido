@@ -24,13 +24,15 @@ public class hiloEnemigoCuatro {
 	public  logicaEnemigosConjunta unEnemigo;
 	ArrayList<logicaEnemigosConjunta> misEnemigos = new ArrayList<logicaEnemigosConjunta>();
 	int numeroEnemigosMatados;
+	String nombreJugador;
 	Puntuacion puntuacionActual = new Puntuacion();
 	
 	//los corazones
 	corazonNivel3y4 corazon;
 
 	int vida=4;
-	public hiloEnemigoCuatro(int tipoEnemigo){
+	public hiloEnemigoCuatro(int tipoEnemigo, String nombrePiloto){
+		this.nombreJugador=nombrePiloto;
 		//lanzmos hilo creacion enemigos
 		Runnable r = new hiloCreacionEnemigos(tipoEnemigo); 
 		new Thread(r).start();
@@ -147,7 +149,7 @@ public class hiloEnemigoCuatro {
 								public void run() {
 									try {
 										int puntuacionFinal = puntuacionActual.puntuacionFinal(numeroEnemigosMatados, vida, 4);
-										ventanas.gameOver.window = new ventanas.gameOver(puntuacionFinal);
+										ventanas.gameOver.window = new ventanas.gameOver(nombreJugador, puntuacionFinal, 4);
 										ventanas.gameOver.window.frame.setVisible(true);
 									
 									} catch (Exception e) {

@@ -20,6 +20,8 @@ import javax.swing.border.LineBorder;
 
 
 
+
+import logica.BD;
 import fondos.logicaFondos;
 
 
@@ -52,14 +54,14 @@ public static gameOver window;
 	/**
 	 * Create the application.
 	 */
-	public gameOver(int puntuacion) {
-		initialize(puntuacion);
+	public gameOver(String nombreJugador, int puntuacion, int nivel) {
+		initialize(nombreJugador, puntuacion, nivel);
 	}
 
 	/**
 	 * Initialize the contents of the frame.
 	 */
-	private void initialize(int puntuacion) {
+	private void initialize(String nombreJugador, int puntuacion, int nivel) {
 		frame = new JDialog(ventanaJuego.frame);
 		frame.setBounds(100, 100, 450, 300);
 		//frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -112,13 +114,17 @@ public static gameOver window;
 		puntuaciones.setText(""+puntuacion);
 		panelPuntuaciones.add(puntuaciones);
 		
-		
+		//Insertamos en la base de datos solo si es del nivel 4
+		if (nivel == 4)
+		BD.insertAccion(nombreJugador, puntuacion);
 	}
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
 		if(e.getSource()==botonAdelante){
+			//Cerramos la BD
+			BD.finConexion();
 			System.exit( 0 ); 
 		}
 		

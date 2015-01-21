@@ -24,6 +24,7 @@ import java.util.LinkedList;
 import javax.swing.JLabel;
 import javax.swing.border.LineBorder;
 
+import logica.BD;
 import logica.logicaPiloto;
 
 public class ventanaStart  implements KeyListener, ActionListener{
@@ -106,6 +107,12 @@ public class ventanaStart  implements KeyListener, ActionListener{
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
+					BD.conexion();
+				} catch (ClassNotFoundException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				try {
 					window = new ventanaStart();
 					window.frame.setVisible(true);
 					System.out.println(window.frame.getWidth());
@@ -122,7 +129,6 @@ public class ventanaStart  implements KeyListener, ActionListener{
 	 */
 	public ventanaStart() {
 		initialize();
-		
 	}
 
 	/**
@@ -206,19 +212,19 @@ public class ventanaStart  implements KeyListener, ActionListener{
 		marcoPuntucionesJlabel.setBounds(xMarcoPuntuaciones, yMarcoPuntuaciones, anchoMarcoPuntuaciones, altoMarcoPuntuaciones);
 		panelInicioFondo.add(marcoPuntucionesJlabel);
 		
-		puestoUnoJlabel = new JLabel("PEPE: 1111111");
+		puestoUnoJlabel = new JLabel(""+BD.obtenerHighScores(1));
 		puestoUnoJlabel.setForeground(Color.GREEN);
 		puestoUnoJlabel.setFont(new Font("Snap ITC", Font.BOLD, tamañoLetraTituloUno));
 		puestoUnoJlabel.setBounds(xPuntuacionesUno, yPuntuacionesUno, anchoPuntuacionesUno, altoPuntuacionesUno);
 		panelInicioFondo.add(puestoUnoJlabel);
 		
-		puestoDosJlabel = new JLabel("PEPE: 1111111");
+		puestoDosJlabel = new JLabel(""+BD.obtenerHighScores(2));
 		puestoDosJlabel.setForeground(Color.GREEN);
 		puestoDosJlabel.setFont(new Font("Snap ITC", Font.BOLD, tamañoLetraTituloDos));
 		puestoDosJlabel.setBounds(xPuntuacionesDos, yPuntuacionesDos, anchoPuntuacionesDos, altoPuntuacionesDos);
 		panelInicioFondo.add(puestoDosJlabel);
 		
-		puestoTresJlabel = new JLabel("PEPE: 1111111");
+		puestoTresJlabel = new JLabel(""+BD.obtenerHighScores(3));
 		puestoTresJlabel.setForeground(Color.GREEN);
 		puestoTresJlabel.setFont(new Font("Snap ITC", Font.BOLD, tamañoLetraTituloTres));
 		puestoTresJlabel.setBounds(xPuntuacionesTres, yPuntuacionesTres, anchoPuntuacionesTres, altoPuntuacionesTres);

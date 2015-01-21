@@ -25,13 +25,15 @@ public class hiloEnemigoDos {
 	int numeroEnemigosMatados;
 	int numeroMaximosEnemigos;
 	int numeroEnemigosAparecidos;
+	String nombreJugador;
 	Puntuacion puntuacionActual = new Puntuacion();
 	
 	//los corazones
 		corazonNivel1y2 corazon;
 
 	int vida=8;
-	public hiloEnemigoDos(int tipoEnemigo){
+	public hiloEnemigoDos(int tipoEnemigo, String nombrePiloto){
+		this.nombreJugador=nombrePiloto;
 		//lanzmos hilo creacion enemigos
 		Runnable r = new hiloCreacionEnemigos(tipoEnemigo); 
 		new Thread(r).start();
@@ -141,7 +143,7 @@ public class hiloEnemigoDos {
 								public void run() {
 									try {
 										int puntuacionFinal = puntuacionActual.puntuacionFinal(numeroEnemigosMatados, vida, 2);
-										ventanas.gameOver.window = new ventanas.gameOver(puntuacionFinal);
+										ventanas.gameOver.window = new ventanas.gameOver(nombreJugador, puntuacionFinal, 2);
 										ventanas.gameOver.window.frame.setVisible(true);
 									
 									} catch (Exception e) {
@@ -216,7 +218,7 @@ public class hiloEnemigoDos {
 									public void run() {
 										try {
 											int puntuacionFinal = puntuacionActual.puntuacionFinal(numeroEnemigosMatados, vida, 1);
-											ventanas.gameOver.window = new ventanas.gameOver(puntuacionFinal);
+											ventanas.gameOver.window = new ventanas.gameOver(nombreJugador, puntuacionFinal, 2);
 											ventanas.gameOver.window.frame.setVisible(true);
 										
 										} catch (Exception e) {

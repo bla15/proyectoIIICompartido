@@ -135,7 +135,7 @@ public class ventanaInformacion  implements  ActionListener{
 		textoImportante.setFont(new Font("Tempus Sans ITC", Font.BOLD | Font.ITALIC, 15));
 		textoImportante.setEditable(false);
 		scrollPane.setViewportView(textoImportante);
-		textoImportante.setText("Los desarroladores advierten que para obtener puntuacion y as\u00ED poder puntuar, es necesario que se selecione el mundo de destino numero cuatro. Si es tu primera vez es recomendable jugar a los mundos anteriores para coger experiencia. Suerte reclutA");
+		textoImportante.setText("Los desarroladores advierten que para obtener puntuacion y as\u00ED poder puntuar, es necesario que se selecione el mundo de destino numero cuatro. Si es tu primera vez es recomendable jugar a los mundos anteriores para coger experiencia. Suerte recluta");
 	}
 
 

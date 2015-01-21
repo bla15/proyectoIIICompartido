@@ -249,7 +249,7 @@ public class ventanaEleccion implements KeyListener, ActionListener {
 							//metemos el nombre del piloto en contenedor
 							ventanaStart.contenedor= new logicaPiloto(0, txtPonTuNombre.getText());
 						
-							ventanaJuego.window = new ventanaJuego(elFondo.getRutaFondo(), elFondo.getJoptionPanel(), tipoEnemigo);
+							ventanaJuego.window = new ventanaJuego(txtPonTuNombre.getText(), elFondo.getRutaFondo(), elFondo.getJoptionPanel(), tipoEnemigo);
 							ventanaJuego.window.frame.setVisible(true);
 						
 						

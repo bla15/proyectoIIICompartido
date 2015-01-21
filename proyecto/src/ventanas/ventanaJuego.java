@@ -73,28 +73,28 @@ public class ventanaJuego implements ActionListener, KeyListener {
 	/**
 	 * Launch the application.
 	 */
-	public static void main(String[] args) {
-		
-		
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					//Modificar para probar
-					window = new ventanaJuego("/fondos/nebulosa.jpg", 4,4);
-					window.frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-		
-	}
+//	public static void main(String[] args) {
+//		
+//		
+//		EventQueue.invokeLater(new Runnable() {
+//			public void run() {
+//				try {
+//					//Modificar para probar
+//					window = new ventanaJuego("/fondos/nebulosa.jpg", 4,4);
+//					window.frame.setVisible(true);
+//				} catch (Exception e) {
+//					e.printStackTrace();
+//				}
+//			}
+//		});
+//		
+//	}
 
 
 	/**
 	 * Create the application.
 	 */
-	public ventanaJuego(String ruta, int JoptionPanel, int enemigos) {
+	public ventanaJuego(String nombrePiloto, String ruta, int JoptionPanel, int enemigos) {
 		
 		
 		rutaFondo=ruta;
@@ -126,7 +126,7 @@ public class ventanaJuego implements ActionListener, KeyListener {
 		hiloLaser hiloLaser = new hiloLaser(); 
 		hiloLaser.start();
 		
-		hiloEnemigos=new eleccionHilo (enemigos);
+		hiloEnemigos=new eleccionHilo (enemigos, nombrePiloto);
 		
 		
 		//metodos para recuperar el foco y que las teclas funcionan
