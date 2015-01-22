@@ -52,7 +52,7 @@ public class hiloEnemigoCuatro {
 
 
 	/*
-	 * hilo que crea a los enemigos y los mete en la arraty list
+	 * hilo que crea a los enemigos y los mete en la array list
 	 * tambien los va sacando por pantalla
 	 */
 	public class hiloCreacionEnemigos implements Runnable {
@@ -64,7 +64,7 @@ public class hiloEnemigoCuatro {
 
 		public void run() {
 			
-				//si aun no se han perdido todas las vidas, entra
+				//Mientras se tengan todavia vidas, se ejecuta el hilo
 				while(vida>0){
 					unEnemigo= new logicaEnemigosConjunta(tipoEnemigo);
 					//posicon aleatoria en el eje de las x (sin que toque los bordes para que se vea bien la imagen
@@ -76,7 +76,7 @@ public class hiloEnemigoCuatro {
 					//lo metemos en el array de enmigos
 					misEnemigos.add(unEnemigo);
 
-					//lo sacmos en el panel de juego
+					//lo sacamos en el panel de juego
 					ventanaJuego.paneljuego.add(unEnemigo.getFotoEnemigo());
 					ventanaJuego.paneljuego.repaint();
 
@@ -104,8 +104,8 @@ public class hiloEnemigoCuatro {
 		public void run(){
 			while(vida>0){
 				
-				//Aqui lo que se hace es que cada 0.3 segundos, se calcula un nuevo giro para el enemigo
-				//Exsten 2 posibilidades o seguira por donde va desde el principio o cambia directamente
+				//Aqui lo que se hace es que cada cierto periodo de tiempo, se calcula un nuevo giro para el enemigo
+				//Existen 2 posibilidades o seguira por donde va desde el principio o cambia directamente
 				if ((System.currentTimeMillis()-tiempoAccion >=1000) && (System.currentTimeMillis()-tiempoAccion <=1500)){
 					for (int i = 0;i < misEnemigos.size();i++){
 						misEnemigos.get(i).randomDestino();

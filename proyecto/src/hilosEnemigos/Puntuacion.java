@@ -8,6 +8,7 @@ public class Puntuacion {
 	
 	public void calcularPuntuacion(int enemigosMatados, int vidas, int nivel){
 		//Siempre llamaremos a este metodo para ir calculando poco a poco las puntuaciones
+		//Mas importante permite actualizar el score a cada enemigo matado o vida perdida
 		if ((nivel == 1) || (nivel == 2)){
 			puntuacion = (int) (enemigosMatados*10+vidas*0.5*100);
 			ventanaJuego.puntuacionVisible.setText(""+puntuacion);

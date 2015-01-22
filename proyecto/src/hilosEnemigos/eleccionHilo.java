@@ -6,6 +6,8 @@ public class eleccionHilo {
 	hiloEnemigoTres enemigoTres;
 	hiloEnemigoCuatro enemigoCuatro;
 	public eleccionHilo(int tipoEnemigo, String nombrePiloto){
+		//Es para saber que logica de enemigo se debe de ejecutar, tambien le pasamos el nombre piloto para 
+		// despues hacer el ranking des los Scores
 		if(tipoEnemigo==1){
 			enemigoUno= new hiloEnemigoUno(tipoEnemigo, nombrePiloto);
 		}

@@ -12,7 +12,7 @@ public class logicaFondos extends JPanel {
 		public URL fondo;
 		
 	public logicaFondos(String ruta){
-		
+		//Se le pasa la ruta del archivo, y lo pone como fondo
 		fondo= this.getClass().getResource(ruta);
 		imagenFondo= new ImageIcon(fondo).getImage();
 		//"/t/as.jpg"
